@@ -1,14 +1,4 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title>LoreWeave Test</title>
-</head>
-<body>
-    <h1>Welcome to LoreWeave</h1>
-    <p>The archive is open.</p>
-</body>
-</html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,93 +13,290 @@
             padding: 0;
         }
 
-        body {
-            background: #0b0a10;
-            color: #e8e4ed;
-            font-family: Georgia, "Times New Roman", serif;
-            min-height: 100vh;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .hero {
+        body {
+            min-height: 100vh;
+            overflow: hidden;
+            background: #08070c;
+            color: #eeeaf2;
+            font-family: Georgia, "Times New Roman", serif;
+        }
+
+        .page {
+            position: relative;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+            justify-content: center;
+            overflow: hidden;
             background:
-                radial-gradient(circle at center, #171323 0%, #0b0a10 55%);
+                radial-gradient(
+                    circle at 50% 45%,
+                    rgba(74, 48, 91, 0.25) 0%,
+                    rgba(22, 17, 31, 0.18) 32%,
+                    transparent 65%
+                ),
+                linear-gradient(
+                    135deg,
+                    #08070c 0%,
+                    #100c16 48%,
+                    #08070c 100%
+                );
+        }
+
+        /* Atmospheric glow */
+        .glow {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            background: rgba(89, 49, 108, 0.08);
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .glow.one {
+            top: -180px;
+            left: -120px;
+        }
+
+        .glow.two {
+            bottom: -200px;
+            right: -120px;
+        }
+
+        /* Decorative lines */
+        .line {
+            position: absolute;
+            background: rgba(145, 113, 157, 0.16);
+        }
+
+        .line.top {
+            top: 32px;
+            left: 7%;
+            width: 86%;
+            height: 1px;
+        }
+
+        .line.bottom {
+            bottom: 32px;
+            left: 7%;
+            width: 86%;
+            height: 1px;
+        }
+
+        .line.left {
+            left: 32px;
+            top: 7%;
+            width: 1px;
+            height: 86%;
+        }
+
+        .line.right {
+            right: 32px;
+            top: 7%;
+            width: 1px;
+            height: 86%;
+        }
+
+        /* Main content */
+        .center {
+            position: relative;
+            z-index: 2;
+            width: min(900px, 90%);
+            text-align: center;
+            padding: 60px 20px;
         }
 
         .symbol {
-            font-size: 14px;
-            letter-spacing: 8px;
-            color: #76638f;
-            margin-bottom: 25px;
+            margin-bottom: 28px;
+            color: #9678a5;
+            font-size: 13px;
+            letter-spacing: 9px;
+            opacity: 0.85;
         }
 
         h1 {
-            font-size: clamp(3rem, 10vw, 7rem);
-            letter-spacing: 8px;
+            font-size: clamp(3.5rem, 12vw, 8rem);
             font-weight: normal;
-            color: #eeeaf2;
-            margin-bottom: 12px;
+            letter-spacing: 10px;
+            line-height: 1;
+            color: #f1edf4;
+            text-shadow:
+                0 0 25px rgba(143, 101, 161, 0.16);
         }
 
         .subtitle {
-            font-size: 1rem;
-            letter-spacing: 4px;
+            margin-top: 24px;
+            color: #95899e;
+            font-size: clamp(0.7rem, 2vw, 0.95rem);
+            letter-spacing: 6px;
             text-transform: uppercase;
-            color: #8e819d;
-            margin-bottom: 45px;
+        }
+
+        .divider {
+            width: 90px;
+            height: 1px;
+            margin: 38px auto;
+            background: linear-gradient(
+                to right,
+                transparent,
+                #765b82,
+                transparent
+            );
         }
 
         .archive-button {
+            position: relative;
             display: inline-block;
-            padding: 15px 38px;
-            border: 1px solid #695477;
+            padding: 17px 45px;
+            border: 1px solid #695275;
             color: #eeeaf2;
             text-decoration: none;
-            letter-spacing: 3px;
+            font-size: 0.78rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            transition: 0.3s ease;
+            overflow: hidden;
+            transition:
+                background 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease,
+                transform 0.35s ease;
+        }
+
+        .archive-button::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(126, 82, 143, 0.16),
+                transparent
+            );
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
         }
 
         .archive-button:hover {
-            background: #21182b;
-            border-color: #a06c91;
+            background: rgba(80, 48, 94, 0.18);
+            border-color: #9b73a5;
+            box-shadow:
+                0 0 25px rgba(113, 72, 130, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .archive-button:hover::before {
+            transform: translateX(100%);
         }
 
         .hint {
-            position: absolute;
-            bottom: 25px;
-            font-size: 0.75rem;
+            margin-top: 45px;
             color: #514958;
-            letter-spacing: 2px;
+            font-size: 0.68rem;
+            letter-spacing: 3px;
+        }
+
+        /* Tiny atmospheric particles */
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            background: #b19bb9;
+            opacity: 0.35;
+            animation: drift 7s infinite ease-in-out;
+        }
+
+        .p1 { top: 18%; left: 21%; animation-delay: 0s; }
+        .p2 { top: 28%; left: 76%; animation-delay: 2s; }
+        .p3 { top: 71%; left: 18%; animation-delay: 4s; }
+        .p4 { top: 78%; left: 81%; animation-delay: 1s; }
+        .p5 { top: 14%; left: 53%; animation-delay: 3s; }
+        .p6 { top: 61%; left: 88%; animation-delay: 5s; }
+
+        @keyframes drift {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.2;
+            }
+
+            50% {
+                transform: translateY(-12px);
+                opacity: 0.6;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .line.left,
+            .line.right {
+                display: none;
+            }
+
+            .line.top,
+            .line.bottom {
+                left: 5%;
+                width: 90%;
+            }
+
+            h1 {
+                letter-spacing: 6px;
+            }
+
+            .subtitle {
+                letter-spacing: 3px;
+            }
+
+            .archive-button {
+                padding: 15px 30px;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <main class="hero">
+    <main class="page">
 
-        <div class="symbol">✦ &nbsp; ARCHIVE &nbsp; ✦</div>
+        <div class="glow one"></div>
+        <div class="glow two"></div>
 
-        <h1>LoreWeave</h1>
+        <div class="line top"></div>
+        <div class="line bottom"></div>
+        <div class="line left"></div>
+        <div class="line right"></div>
 
-        <p class="subtitle">
-            Stories leave traces.
-        </p>
+        <span class="particle p1"></span>
+        <span class="particle p2"></span>
+        <span class="particle p3"></span>
+        <span class="particle p4"></span>
+        <span class="particle p5"></span>
+        <span class="particle p6"></span>
 
-        <a href="#" class="archive-button">
-            Enter the Archive
-        </a>
+        <section class="center">
 
-        <p class="hint">
-            Some records are better left unread.
-        </p>
+            <div class="symbol">✦ &nbsp; ARCHIVE &nbsp; ✦</div>
+
+            <h1>LoreWeave</h1>
+
+            <p class="subtitle">
+                Stories leave traces.
+            </p>
+
+            <div class="divider"></div>
+
+            <a href="#" class="archive-button">
+                Enter the Archive
+            </a>
+
+            <p class="hint">
+                Some records are better left unread.
+            </p>
+
+        </section>
 
     </main>
 
