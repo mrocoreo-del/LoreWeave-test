@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoreWeave | Author Command Panel</title>
+    
+    <!-- Dark Atmospheric Fonts & Quill Rich Text Editor -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0a0a0c;
+            --panel-bg: #121216;
+            --border-color: #2a2a35;
+            --accent-gold: #c9a050;
+            --accent-gold-hover: #e5b869;
+            --text-main: #d1d1d6;
+            --text-muted: #7a7a85;
+            --status-published: #2e7d32;
+            --status-draft: #c62828;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: var(--accent-gold);
+            color: #000;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-gold-hover);
+            box-shadow: 0 0 15px rgba(201, 160, 80, 0.4);
+        }
+
+        /* Dashboard Main Layout */
+        .dashboard-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .record-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .record-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .chapter-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .chapter-table th, .chapter-table td {
+            text-align: left;
+            padding: 0.8rem;
+            border-bottom: 1px solid #1a1a22;
+        }
+
+        .chapter-table th {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        .status-published {
+            background: rgba(46, 125, 50, 0.2);
+            color: #4caf50;
+            border: 1px solid #2e7d32;
+        }
+
+        .status-draft {
+            background: rgba(198, 40, 40, 0.2);
+            color: #ef5350;
+            border: 1px solid #c62828;
+        }
+
+        /* Editor Modal Overlay */
+        .editor-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 100;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .editor-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: #08080a;
+            border: 1px solid var(--border-color);
+            color: #fff;
+            padding: 0.8rem;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-control:focus {
+            outline: 1px solid var(--accent-gold);
+        }
+
+        /* Customizing Quill Dark Mode */
+        .ql-toolbar.ql-snow {
+            background: #181820;
+            border-color: var(--border-color) !important;
+        }
+
+        .ql-container.ql-snow {
+            border-color: var(--border-color) !important;
+            background: #08080a;
+            color: var(--text-main);
+            min-height: 400px;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .ql-stroke {
+            stroke: var(--text-main) !important;
+        }
+
+        .ql-fill {
+            fill: var(--text-main) !important;
+        }
+
+        .ql-picker {
+            color: var(--text-main) !important;
+        }
+
+        .editor-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-cancel {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+        }
+
+        .btn-cancel:hover {
+            color: #fff;
+            border-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header>
+            <div>
+                <div class="brand-title">LOREWEAVE</div>
+                <div class="subtitle">AUTHOR CONTROL PANEL</div>
+            </div>
+            <button class="btn-primary" onclick="openEditor()">+ ADD CHAPTER</button>
+        </header>
+
+        <section class="record-card">
+            <div class="record-header">
+                <div>
+                    <h2 style="font-family: 'Cinzel', serif; color: #fff;">Record 001</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">The First Record</p>
+                </div>
+                <span class="status-badge status-published">Active Archive</span>
+            </div>
+
+            <table class="chapter-table">
+                <thead>
+                    <tr>
+                        <th>Chapter #</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="chapter-list">
+                    <tr>
+                        <td>Chapter 1</td>
+                        <td>The Signal in the Ash</td>
+                        <td><span class="status-badge status-published">Published</span></td>
+                        <td><button style="background:none; border:none; color:var(--accent-gold); cursor:pointer;">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 2</td>
+                        <td>Echoes of Record 001</td>
+                        <td><span class="status-badge status-published">Published</span></td>
+                        <td><button style="background:none; border:none; color:var(--accent-gold); cursor:pointer;">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 3</td>
+                        <td>The Locked Vault</td>
+                        <td><span class="status-badge status-published">Published</span></td>
+                        <td><button style="background:none; border:none; color:var(--accent-gold); cursor:pointer;">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Chapter 4</td>
+                        <td>Drafting Chapter...</td>
+                        <td><span class="status-badge status-draft">Draft</span></td>
+                        <td><button style="background:none; border:none; color:var(--accent-gold); cursor:pointer;">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Editor Modal -->
+    <div class="editor-modal" id="editorModal">
+        <div class="editor-container">
+            <h2 style="font-family: 'Cinzel', serif; margin-bottom: 1.5rem; color: var(--accent-gold);">Deploy New Chapter</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="chapNum">CHAPTER NUMBER</label>
+                    <input type="number" id="chapNum" class="form-control" placeholder="4">
+                </div>
+                <div class="form-group">
+                    <label for="chapTitle">CHAPTER TITLE</label>
+                    <input type="text" id="chapTitle" class="form-control" placeholder="Enter title...">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>CHAPTER PROSE (PASTE FROM AIO / CHATGPT)</label>
+                <!-- Quill Rich Text Editor Container -->
+                <div id="editor"></div>
+            </div>
+
+            <div class="editor-actions">
+                <button class="btn-cancel" onclick="closeEditor()">Cancel</button>
+                <button class="btn-primary" onclick="publishChapter()">PUBLISH TO ARCHIVE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quill JS Library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        // Initialize Quill Rich-Text Editor with essential narrative formatting options
+        var quill = new Quill('#editor', {
+            theme: 'snow',
+            modules: {
+                toolbar: [
+                    [{ 'header': [2, 3, false] }],
+                    ['bold', 'italic', 'underline', 'blockquote'],
+                    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                    ['clean']
+                ]
+            },
+            placeholder: 'Paste your narrative draft here...'
+        });
+
+        function openEditor() {
+            document.getElementById('editorModal').style.display = 'block';
+        }
+
+        function closeEditor() {
+            document.getElementById('editorModal').style.display = 'none';
+        }
+
+        function publishChapter() {
+            const num = document.getElementById('chapNum').value;
+            const title = document.getElementById('chapTitle').value;
+            const contentHTML = quill.root.innerHTML; // Keeps all rich formatting, paragraphs, dialogue!
+
+            if(!num || !title || !contentHTML) {
+                alert("Please fill in all fields before publishing!");
+                return;
+            }
+
+            console.log("Prepared Payload for Chapter:", {
+                record: "001",
+                chapter: num,
+                title: title,
+                content: contentHTML
+            });
+
+            alert(`Chapter ${num}: "${title}" staged successfully! (Ready for GitHub Sync implementation)`);
+            closeEditor();
+        }
+    </script>
+</body>
+</html>
