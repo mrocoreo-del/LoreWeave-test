@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Chapter 01 | Mr. LoreWeave</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(100, 55, 150, 0.18), transparent 35%),
+                #08060d;
+            color: #ddd7e5;
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 25px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .logo {
+            color: white;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .back {
+            color: #a996b8;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        .back:hover {
+            color: white;
+        }
+
+        .chapter-header {
+            text-align: center;
+            padding: 100px 20px 65px;
+        }
+
+        .record {
+            color: #9470b6;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 4px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            color: white;
+            font-size: clamp(38px, 7vw, 65px);
+            font-weight: normal;
+            letter-spacing: 3px;
+        }
+
+        .chapter-number {
+            color: #81778b;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            margin-top: 18px;
+        }
+
+        .divider {
+            width: 70px;
+            height: 1px;
+            background: #72518f;
+            margin: 35px auto 0;
+        }
+
+        .reader {
+            width: min(760px, 88%);
+            margin: 0 auto;
+            padding-bottom: 100px;
+        }
+
+        .reader p {
+            font-size: 18px;
+            line-height: 2;
+            margin-bottom: 30px;
+            color: #c8c2ce;
+        }
+
+        .reader .opening {
+            font-size: 22px;
+            color: #eeeaf2;
+        }
+
+        .chapter-end {
+            text-align: center;
+            margin-top: 80px;
+            padding-top: 45px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .chapter-end-text {
+            color: #756b80;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+
+        .next-button {
+            display: inline-block;
+            padding: 15px 28px;
+            border: 1px solid rgba(166, 123, 200, 0.45);
+            color: #d8c9e4;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .next-button:hover {
+            background: rgba(128, 79, 170, 0.18);
+            border-color: #a87acb;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: #5f5867;
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+
+            .chapter-header {
+                padding: 70px 20px 50px;
+            }
+
+            .reader {
+                width: 88%;
+            }
+
+            .reader p {
+                font-size: 17px;
+                line-height: 1.9;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        MR. LOREWEAVE
+    </a>
+
+    <a href="record-001.html" class="back">
+        ← NOVEL
+    </a>
+
+</header>
+
+
+<section class="chapter-header">
+
+    <div class="record">
+        RECORD 001
+    </div>
+
+    <h1>The Beginning</h1>
+
+    <div class="chapter-number">
+        CHAPTER 01
+    </div>
+
+    <div class="divider"></div>
+
+</section>
+
+
+<main class="reader">
+
+    <p class="opening">
+        The town had been quiet for three days.
+    </p>
+
+    <p>
+        Snow covered the narrow roads, the rooftops, and the old trees
+        surrounding the town. Nothing moved beneath the pale winter sky.
+    </p>
+
+    <p>
+        People had grown accustomed to the silence.
+        They had lived with it for years.
+    </p>
+
+    <p>
+        But that morning, something was different.
+    </p>
+
+    <p>
+        Nobody knew exactly when the strange feeling had begun.
+        There was no sound to point toward, no shadow standing at the
+        end of the street.
+    </p>
+
+    <p>
+        Only the quiet.
+    </p>
+
+    <p>
+        And somewhere beyond the houses, beneath the snow,
+        something waited to be found.
+    </p>
+
+
+    <div class="chapter-end">
+
+        <div class="chapter-end-text">
+            END OF CHAPTER 01
+        </div>
+
+        <a href="#" class="next-button">
+            NEXT CHAPTER →
+        </a>
+
+    </div>
+
+</main>
+
+
+<footer>
+    © 2026 MR. LOREWEAVE · THE ARCHIVE
+</footer>
+
+</body>
+</html>
