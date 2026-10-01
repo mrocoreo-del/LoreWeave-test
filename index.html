@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mr.LoreWeave | The Archive</title>
+    <title>Mr. LoreWeave | The Archive</title>
 
     <style>
         * {
@@ -19,239 +19,242 @@
 
         body {
             min-height: 100vh;
-            overflow: hidden;
-            background: #08070c;
-            color: #eeeaf2;
             font-family: Georgia, "Times New Roman", serif;
+            color: #eee8f5;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(91, 48, 130, 0.25), transparent 35%),
+                radial-gradient(circle at 20% 80%, rgba(55, 20, 80, 0.2), transparent 30%),
+                #07060a;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.12;
+            background-image:
+                radial-gradient(circle, #ffffff 1px, transparent 1px);
+            background-size: 90px 90px;
+            animation: drift 18s linear infinite;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(90px);
+            }
         }
 
         .page {
-            position: relative;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            width: 100%;
+            padding: 28px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .logo {
+            font-size: 1.15rem;
+            letter-spacing: 0.22em;
+            color: #f2edf8;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+        }
+
+        nav a {
+            color: #aaa2b5;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.12em;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        .hero {
+            min-height: 78vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            background:
-                radial-gradient(
-                    circle at 50% 45%,
-                    rgba(74, 48, 91, 0.25) 0%,
-                    rgba(22, 17, 31, 0.18) 32%,
-                    transparent 65%
-                ),
-                linear-gradient(
-                    135deg,
-                    #08070c 0%,
-                    #100c16 48%,
-                    #08070c 100%
-                );
-        }
-
-        /* Atmospheric glow */
-        .glow {
-            position: absolute;
-            width: 420px;
-            height: 420px;
-            border-radius: 50%;
-            background: rgba(89, 49, 108, 0.08);
-            filter: blur(80px);
-            pointer-events: none;
-        }
-
-        .glow.one {
-            top: -180px;
-            left: -120px;
-        }
-
-        .glow.two {
-            bottom: -200px;
-            right: -120px;
-        }
-
-        /* Decorative lines */
-        .line {
-            position: absolute;
-            background: rgba(145, 113, 157, 0.16);
-        }
-
-        .line.top {
-            top: 32px;
-            left: 7%;
-            width: 86%;
-            height: 1px;
-        }
-
-        .line.bottom {
-            bottom: 32px;
-            left: 7%;
-            width: 86%;
-            height: 1px;
-        }
-
-        .line.left {
-            left: 32px;
-            top: 7%;
-            width: 1px;
-            height: 86%;
-        }
-
-        .line.right {
-            right: 32px;
-            top: 7%;
-            width: 1px;
-            height: 86%;
-        }
-
-        /* Main content */
-        .center {
-            position: relative;
-            z-index: 2;
-            width: min(900px, 90%);
             text-align: center;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
-        .symbol {
-            margin-bottom: 28px;
-            color: #9678a5;
-            font-size: 13px;
-            letter-spacing: 9px;
-            opacity: 0.85;
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .eyebrow {
+            color: #9f7fc4;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            font-size: 0.7rem;
+            margin-bottom: 24px;
         }
 
         h1 {
-            font-size: clamp(3.5rem, 12vw, 8rem);
-            font-weight: normal;
-            letter-spacing: 10px;
-            line-height: 1;
-            color: #f1edf4;
-            text-shadow:
-                0 0 25px rgba(143, 101, 161, 0.16);
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 400;
+            letter-spacing: 0.08em;
+            line-height: 0.95;
+            text-shadow: 0 0 35px rgba(125, 72, 170, 0.25);
         }
 
         .subtitle {
-            margin-top: 24px;
-            color: #95899e;
-            font-size: clamp(0.7rem, 2vw, 0.95rem);
-            letter-spacing: 6px;
-            text-transform: uppercase;
+            margin-top: 28px;
+            color: #aaa3b2;
+            font-size: 1.05rem;
+            letter-spacing: 0.12em;
         }
 
-        .divider {
-            width: 90px;
-            height: 1px;
-            margin: 38px auto;
-            background: linear-gradient(
-                to right,
-                transparent,
-                #765b82,
-                transparent
-            );
-        }
-
-        .archive-button {
-            position: relative;
+        .enter-button {
             display: inline-block;
-            padding: 17px 45px;
-            border: 1px solid #695275;
-            color: #eeeaf2;
+            margin-top: 45px;
+            padding: 15px 32px;
+            border: 1px solid rgba(164, 113, 198, 0.55);
+            color: #eee8f5;
             text-decoration: none;
+            letter-spacing: 0.18em;
             font-size: 0.78rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            overflow: hidden;
-            transition:
-                background 0.35s ease,
-                border-color 0.35s ease,
-                box-shadow 0.35s ease,
-                transform 0.35s ease;
+            transition: 0.35s;
+            background: rgba(50, 20, 70, 0.2);
         }
 
-        .archive-button::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(126, 82, 143, 0.16),
-                transparent
-            );
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-
-        .archive-button:hover {
-            background: rgba(80, 48, 94, 0.18);
-            border-color: #9b73a5;
-            box-shadow:
-                0 0 25px rgba(113, 72, 130, 0.15);
+        .enter-button:hover {
+            background: rgba(100, 40, 130, 0.35);
+            border-color: #b783d6;
+            box-shadow: 0 0 30px rgba(135, 72, 170, 0.2);
             transform: translateY(-2px);
         }
 
-        .archive-button:hover::before {
-            transform: translateX(100%);
-        }
-
         .hint {
-            margin-top: 45px;
-            color: #514958;
-            font-size: 0.68rem;
-            letter-spacing: 3px;
+            margin-top: 20px;
+            color: #625d68;
+            font-size: 0.72rem;
+            font-style: italic;
         }
 
-        /* Tiny atmospheric particles */
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            border-radius: 50%;
-            background: #b19bb9;
-            opacity: 0.35;
-            animation: drift 7s infinite ease-in-out;
+        .section {
+            padding: 90px 7%;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
 
-        .p1 { top: 18%; left: 21%; animation-delay: 0s; }
-        .p2 { top: 28%; left: 76%; animation-delay: 2s; }
-        .p3 { top: 71%; left: 18%; animation-delay: 4s; }
-        .p4 { top: 78%; left: 81%; animation-delay: 1s; }
-        .p5 { top: 14%; left: 53%; animation-delay: 3s; }
-        .p6 { top: 61%; left: 88%; animation-delay: 5s; }
-
-        @keyframes drift {
-            0%, 100% {
-                transform: translateY(0);
-                opacity: 0.2;
-            }
-
-            50% {
-                transform: translateY(-12px);
-                opacity: 0.6;
-            }
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 0.12em;
         }
 
-        @media (max-width: 600px) {
-            .line.left,
-            .line.right {
-                display: none;
+        .section-subtitle {
+            text-align: center;
+            margin-top: 12px;
+            color: #77717e;
+            font-size: 0.9rem;
+        }
+
+        .novel-grid {
+            max-width: 1100px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        .novel-card {
+            padding: 30px;
+            min-height: 280px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background:
+                linear-gradient(145deg, rgba(44, 22, 57, 0.55), rgba(12, 10, 15, 0.8));
+            transition: 0.35s;
+        }
+
+        .novel-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(156, 104, 190, 0.45);
+        }
+
+        .novel-number {
+            color: #8f6aac;
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+        }
+
+        .novel-card h3 {
+            margin-top: 35px;
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        .novel-card p {
+            margin-top: 15px;
+            color: #8c8692;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .read-button {
+            display: inline-block;
+            margin-top: 25px;
+            color: #b98bce;
+            text-decoration: none;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+        }
+
+        footer {
+            padding: 30px 7%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            color: #55505b;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+        }
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 22px 5%;
             }
 
-            .line.top,
-            .line.bottom {
-                left: 5%;
-                width: 90%;
+            nav {
+                gap: 14px;
             }
 
-            h1 {
-                letter-spacing: 6px;
+            nav a {
+                font-size: 0.7rem;
             }
 
-            .subtitle {
-                letter-spacing: 3px;
+            .hero {
+                min-height: 70vh;
             }
 
-            .archive-button {
-                padding: 15px 30px;
+            .section {
+                padding: 70px 5%;
             }
         }
     </style>
@@ -259,46 +262,137 @@
 
 <body>
 
-    <main class="page">
+<div class="page">
 
-        <div class="glow one"></div>
-        <div class="glow two"></div>
+    <header>
+        <div class="logo">MR. LOREWEAVE</div>
 
-        <div class="line top"></div>
-        <div class="line bottom"></div>
-        <div class="line left"></div>
-        <div class="line right"></div>
+        <nav>
+            <a href="#archive">ARCHIVE</a>
+            <a href="#about">ABOUT</a>
+        </nav>
+    </header>
 
-        <span class="particle p1"></span>
-        <span class="particle p2"></span>
-        <span class="particle p3"></span>
-        <span class="particle p4"></span>
-        <span class="particle p5"></span>
-        <span class="particle p6"></span>
+    <main>
 
-        <section class="center">
+        <section class="hero">
 
-            <div class="symbol">✦ &nbsp; ARCHIVE &nbsp; ✦</div>
+            <div class="hero-content">
 
-            <h1>LoreWeave</h1>
+                <div class="eyebrow">THE ARCHIVE</div>
 
-            <p class="subtitle">
-                Stories leave traces.
+                <h1>LOREWEAVE</h1>
+
+                <p class="subtitle">
+                    Stories leave traces.
+                </p>
+
+                <a href="#archive" class="enter-button">
+                    ENTER THE ARCHIVE
+                </a>
+
+                <p class="hint">
+                    Some records are better left unread.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <section class="section" id="archive">
+
+            <h2 class="section-title">THE ARCHIVE</h2>
+
+            <p class="section-subtitle">
+                Stories, worlds, and things that should perhaps remain forgotten.
             </p>
 
-            <div class="divider"></div>
 
-            <a href="#" class="archive-button">
-                Enter the Archive
-            </a>
+            <div class="novel-grid">
 
-            <p class="hint">
-                Some records are better left unread.
+                <article class="novel-card">
+
+                    <div class="novel-number">
+                        ARCHIVE 001
+                    </div>
+
+                    <h3>Coming Soon</h3>
+
+                    <p>
+                        A story is waiting to be placed here.
+                        For now, the archive remains quiet.
+                    </p>
+
+                    <a href="#" class="read-button">
+                        OPEN RECORD →
+                    </a>
+
+                </article>
+
+
+                <article class="novel-card">
+
+                    <div class="novel-number">
+                        ARCHIVE 002
+                    </div>
+
+                    <h3>Unknown Record</h3>
+
+                    <p>
+                        The file exists, but its contents have not
+                        yet been recovered.
+                    </p>
+
+                    <a href="#" class="read-button">
+                        OPEN RECORD →
+                    </a>
+
+                </article>
+
+
+                <article class="novel-card">
+
+                    <div class="novel-number">
+                        ARCHIVE 003
+                    </div>
+
+                    <h3>Uncatalogued</h3>
+
+                    <p>
+                        Something has been added to the archive
+                        without a known author.
+                    </p>
+
+                    <a href="#" class="read-button">
+                        OPEN RECORD →
+                    </a>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <section class="section" id="about">
+
+            <h2 class="section-title">ABOUT</h2>
+
+            <p class="section-subtitle">
+                The creator behind the archive.
             </p>
 
         </section>
 
     </main>
+
+
+    <footer>
+        © 2026 MR. LOREWEAVE · THE ARCHIVE
+    </footer>
+
+</div>
 
 </body>
 </html>
