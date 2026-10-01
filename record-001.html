@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Record 001 | Mr. LoreWeave</title>
+
+    <meta name="description" content="Record 001 from the Mr. LoreWeave Archive.">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(circle at 50% 20%, rgba(105, 55, 170, 0.22), transparent 35%),
+                linear-gradient(160deg, #07050d, #12091d 50%, #050409);
+            color: #eeeafa;
+            font-family: Georgia, "Times New Roman", serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 90px 90px;
+            opacity: 0.18;
+        }
+
+        header {
+            width: 100%;
+            padding: 28px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 5;
+        }
+
+        .logo {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .back {
+            color: #bda9d8;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .back:hover {
+            color: #ffffff;
+        }
+
+        main {
+            width: min(1100px, 90%);
+            margin: 0 auto;
+            padding: 70px 0 100px;
+        }
+
+        .record-label {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 5px;
+            color: #9e7ac7;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(45px, 9vw, 90px);
+            font-weight: normal;
+            letter-spacing: 8px;
+            line-height: 1;
+            color: #ffffff;
+            text-shadow:
+                0 0 25px rgba(154, 94, 211, 0.35);
+        }
+
+        .subtitle {
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa1b9;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .divider {
+            width: 90px;
+            height: 1px;
+            background: #79529e;
+            margin: 35px auto 55px;
+        }
+
+        .novel-layout {
+            display: grid;
+            grid-template-columns: 330px 1fr;
+            gap: 65px;
+            align-items: start;
+        }
+
+        .cover {
+            min-height: 470px;
+            border: 1px solid rgba(171, 126, 211, 0.35);
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(103, 52, 151, 0.45),
+                    rgba(10, 7, 17, 0.92)
+                );
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.65),
+                0 0 50px rgba(101, 54, 148, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(157, 92, 211, 0.2);
+            filter: blur(50px);
+        }
+
+        .cover-text {
+            position: relative;
+            text-align: center;
+            z-index: 2;
+            padding: 30px;
+        }
+
+        .cover-record {
+            font-family: Arial, sans-serif;
+            color: #b996d8;
+            font-size: 11px;
+            letter-spacing: 4px;
+            margin-bottom: 30px;
+        }
+
+        .cover-title {
+            font-size: 45px;
+            line-height: 1.05;
+            letter-spacing: 5px;
+            color: white;
+        }
+
+        .cover-small {
+            margin-top: 30px;
+            font-family: Arial, sans-serif;
+            color: #91889c;
+            font-size: 10px;
+            letter-spacing: 3px;
+        }
+
+        .info {
+            padding-top: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 14px;
+            border: 1px solid rgba(167, 122, 207, 0.35);
+            color: #b99ad1;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+        }
+
+        .info h2 {
+            font-size: 38px;
+            font-weight: normal;
+            margin-bottom: 18px;
+            color: #ffffff;
+        }
+
+        .genre {
+            font-family: Arial, sans-serif;
+            color: #9f91ad;
+            font-size: 12px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            color: #c0bac8;
+            font-size: 17px;
+            line-height: 1.9;
+            max-width: 650px;
+            margin-bottom: 35px;
+        }
+
+        .stats {
+            display: flex;
+            gap: 35px;
+            margin-bottom: 40px;
+            font-family: Arial, sans-serif;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .stat-number {
+            color: white;
+            font-size: 19px;
+        }
+
+        .stat-label {
+            color: #81788b;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        .start-button {
+            display: inline-block;
+            padding: 17px 32px;
+            background: #eee7f4;
+            color: #120c19;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            transition: 0.3s;
+        }
+
+        .start-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(190, 139, 232, 0.2);
+        }
+
+        .note {
+            margin-top: 25px;
+            color: #756d7e;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 35px 20px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            color: #665e6e;
+            font-family: Arial, sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 22px 6%;
+            }
+
+            main {
+                padding-top: 50px;
+            }
+
+            .novel-layout {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .cover {
+                width: min(330px, 100%);
+                margin: 0 auto;
+                min-height: 450px;
+            }
+
+            .info {
+                text-align: center;
+            }
+
+            .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .stats {
+                justify-content: center;
+            }
+
+            .start-button {
+                width: 100%;
+                max-width: 330px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <a href="index.html" class="logo">
+        MR. LOREWEAVE
+    </a>
+
+    <a href="archive.html" class="back">
+        ← ARCHIVE
+    </a>
+
+</header>
+
+
+<main>
+
+    <div class="record-label">
+        RECORD 001
+    </div>
+
+    <h1>THE FIRST RECORD</h1>
+
+    <div class="subtitle">
+        A STORY FROM THE ARCHIVE
+    </div>
+
+    <div class="divider"></div>
+
+
+    <section class="novel-layout">
+
+        <div class="cover">
+
+            <div class="cover-text">
+
+                <div class="cover-record">
+                    RECORD 001
+                </div>
+
+                <div class="cover-title">
+                    THE<br>
+                    FIRST<br>
+                    RECORD
+                </div>
+
+                <div class="cover-small">
+                    MR. LOREWEAVE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="status">
+                COMING SOON
+            </div>
+
+            <h2>The First Record</h2>
+
+            <div class="genre">
+                PSYCHOLOGICAL · MYSTERY · THRILLER
+            </div>
+
+            <p class="description">
+                Some stories begin with a question.
+                Others begin with something that should never have been found.
+                This record is currently sealed within the Archive.
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">CHAPTERS</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">VIEWS</span>
+                </div>
+
+                <div class="stat">
+                    <span class="stat-number">0</span>
+                    <span class="stat-label">LIKES</span>
+                </div>
+
+            </div>
+
+
+            <a href="#" class="start-button">
+                START READING
+            </a>
+
+            <div class="note">
+                The record is not yet available.
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer>
+    © 2026 MR. LOREWEAVE · THE ARCHIVE
+</footer>
+
+
+</body>
+</html>
