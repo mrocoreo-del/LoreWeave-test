@@ -8,3 +8,110 @@
     <p>The archive is open.</p>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>LoreWeave | The Archive</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #0b0a10;
+            color: #e8e4ed;
+            font-family: Georgia, "Times New Roman", serif;
+            min-height: 100vh;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background:
+                radial-gradient(circle at center, #171323 0%, #0b0a10 55%);
+        }
+
+        .symbol {
+            font-size: 14px;
+            letter-spacing: 8px;
+            color: #76638f;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 7rem);
+            letter-spacing: 8px;
+            font-weight: normal;
+            color: #eeeaf2;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #8e819d;
+            margin-bottom: 45px;
+        }
+
+        .archive-button {
+            display: inline-block;
+            padding: 15px 38px;
+            border: 1px solid #695477;
+            color: #eeeaf2;
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .archive-button:hover {
+            background: #21182b;
+            border-color: #a06c91;
+        }
+
+        .hint {
+            position: absolute;
+            bottom: 25px;
+            font-size: 0.75rem;
+            color: #514958;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="hero">
+
+        <div class="symbol">✦ &nbsp; ARCHIVE &nbsp; ✦</div>
+
+        <h1>LoreWeave</h1>
+
+        <p class="subtitle">
+            Stories leave traces.
+        </p>
+
+        <a href="#" class="archive-button">
+            Enter the Archive
+        </a>
+
+        <p class="hint">
+            Some records are better left unread.
+        </p>
+
+    </main>
+
+</body>
+</html>
