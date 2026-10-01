@@ -85,24 +85,20 @@
         }
 
         .cover {
-            width: 100%;
-            max-width: 520px;
-            height: 300px;
+            width: 400px;
+            max-width: 100%;
+            aspect-ratio: 2 / 3;
             margin: 0 auto 55px;
             border: 1px solid rgba(255,255,255,0.08);
+            overflow: hidden;
+            background: #08070c;
+        }
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            background:
-                radial-gradient(circle at center, rgba(120,90,160,0.16), transparent 55%),
-                #08070c;
-
-            color: #5f5867;
-            font-family: Arial, sans-serif;
-            font-size: 11px;
-            letter-spacing: 3px;
+        .cover img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
         }
 
         .story-info {
@@ -209,7 +205,8 @@
             }
 
             .cover {
-                height: 230px;
+                width: 100%;
+                max-width: 320px;
             }
 
             .description {
@@ -235,7 +232,7 @@
     <div class="subtitle">A STORY FROM THE ARCHIVE</div>
 
     <div class="cover">
-        COVER ART
+        <img src="Untitled602_20261001164222.png" alt="The First Record Cover">
     </div>
 
     <div class="story-info">
