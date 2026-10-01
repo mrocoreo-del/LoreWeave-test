@@ -1,46 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Mr. LoreWeave | The Archive</title>
 
+    <meta
+        name="description"
+        content="The official archive of Mr. LoreWeave. Stories, worlds, art, and records."
+    >
+
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
+
             min-height: 100vh;
-            font-family: Georgia, "Times New Roman", serif;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
             color: #eee8f5;
+
             background:
-                radial-gradient(circle at 50% 20%, rgba(91, 48, 130, 0.25), transparent 35%),
-                radial-gradient(circle at 20% 80%, rgba(55, 20, 80, 0.2), transparent 30%),
+
+                radial-gradient(
+                    circle at 50% 20%,
+                    rgba(91, 48, 130, 0.28),
+                    transparent 38%
+                ),
+
+                radial-gradient(
+                    circle at 15% 80%,
+                    rgba(55, 20, 80, 0.20),
+                    transparent 32%
+                ),
+
                 #07060a;
+
             overflow-x: hidden;
+
         }
+
+
+        /* ATMOSPHERIC BACKGROUND */
 
         body::before {
+
             content: "";
+
             position: fixed;
+
             inset: 0;
+
             pointer-events: none;
-            opacity: 0.12;
+
+            opacity: 0.14;
+
             background-image:
-                radial-gradient(circle, #ffffff 1px, transparent 1px);
+
+                radial-gradient(
+                    circle,
+                    rgba(255,255,255,0.8) 1px,
+                    transparent 1px
+                );
+
             background-size: 90px 90px;
-            animation: drift 18s linear infinite;
+
+            animation:
+                particles 20s linear infinite;
+
         }
 
-        @keyframes drift {
+
+        @keyframes particles {
+
             from {
                 transform: translateY(0);
             }
@@ -48,353 +99,572 @@
             to {
                 transform: translateY(90px);
             }
+
         }
+
+
+        /* SOFT PURPLE GLOW */
+
+        body::after {
+
+            content: "";
+
+            position: fixed;
+
+            width: 500px;
+            height: 500px;
+
+            left: 50%;
+            top: 45%;
+
+            transform: translate(-50%, -50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(111, 58, 145, 0.10),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+
+        }
+
 
         .page {
+
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+
             position: relative;
+
             z-index: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
         }
+
+
+        /* HEADER */
 
         header {
+
             width: 100%;
-            padding: 28px 7%;
+
+            padding:
+                28px
+                7%;
+
             display: flex;
-            justify-content: space-between;
+
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+            justify-content: space-between;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.07);
+
         }
+
 
         .logo {
-            font-size: 1.15rem;
+
+            color: #eee8f5;
+
+            text-decoration: none;
+
+            font-size: 0.95rem;
+
             letter-spacing: 0.22em;
-            color: #f2edf8;
+
+            white-space: nowrap;
+
         }
 
-        nav {
-            display: flex;
-            gap: 28px;
-        }
 
         nav a {
-            color: #aaa2b5;
+
+            color: #8f8996;
+
             text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.12em;
+
+            font-size: 0.72rem;
+
+            letter-spacing: 0.16em;
+
             transition: 0.3s;
+
         }
+
 
         nav a:hover {
+
             color: #ffffff;
+
         }
+
+
+        /* HERO */
 
         main {
+
             flex: 1;
+
         }
+
 
         .hero {
-            min-height: 78vh;
+
+            min-height: 82vh;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             text-align: center;
-            padding: 80px 20px;
+
+            padding:
+                80px
+                20px;
+
         }
+
 
         .hero-content {
-            max-width: 850px;
+
+            width: 100%;
+
+            max-width: 900px;
+
+            animation:
+                appear 1.2s ease both;
+
         }
+
+
+        @keyframes appear {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    translateY(15px);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+
+            }
+
+        }
+
 
         .eyebrow {
-            color: #9f7fc4;
+
+            color: #a47bc2;
+
+            font-size: 0.68rem;
+
+            letter-spacing: 0.42em;
+
             text-transform: uppercase;
-            letter-spacing: 0.4em;
-            font-size: 0.7rem;
-            margin-bottom: 24px;
+
+            margin-bottom: 26px;
+
         }
+
 
         h1 {
-            font-size: clamp(3.5rem, 10vw, 8rem);
+
+            font-size:
+                clamp(
+                    3.6rem,
+                    11vw,
+                    8rem
+                );
+
             font-weight: 400;
+
+            line-height: 0.9;
+
             letter-spacing: 0.08em;
-            line-height: 0.95;
-            text-shadow: 0 0 35px rgba(125, 72, 170, 0.25);
+
+            text-shadow:
+                0 0 40px
+                rgba(126, 70, 170, 0.22);
+
         }
+
 
         .subtitle {
-            margin-top: 28px;
+
+            margin-top: 30px;
+
             color: #aaa3b2;
-            font-size: 1.05rem;
-            letter-spacing: 0.12em;
+
+            font-size: 1rem;
+
+            letter-spacing: 0.16em;
+
         }
+
+
+        /* ENTER BUTTON */
 
         .enter-button {
+
             display: inline-block;
-            margin-top: 45px;
-            padding: 15px 32px;
-            border: 1px solid rgba(164, 113, 198, 0.55);
+
+            margin-top: 46px;
+
+            padding:
+                16px
+                34px;
+
             color: #eee8f5;
+
             text-decoration: none;
-            letter-spacing: 0.18em;
-            font-size: 0.78rem;
-            transition: 0.35s;
-            background: rgba(50, 20, 70, 0.2);
+
+            font-size: 0.72rem;
+
+            letter-spacing: 0.2em;
+
+            border:
+                1px solid
+                rgba(169, 113, 202, 0.55);
+
+            background:
+                rgba(50, 20, 70, 0.18);
+
+            transition:
+                transform 0.35s,
+                background 0.35s,
+                border-color 0.35s,
+                box-shadow 0.35s;
+
         }
+
 
         .enter-button:hover {
-            background: rgba(100, 40, 130, 0.35);
-            border-color: #b783d6;
-            box-shadow: 0 0 30px rgba(135, 72, 170, 0.2);
-            transform: translateY(-2px);
+
+            transform:
+                translateY(-3px);
+
+            background:
+                rgba(95, 39, 125, 0.30);
+
+            border-color:
+                rgba(195, 143, 222, 0.8);
+
+            box-shadow:
+                0 0 35px
+                rgba(125, 70, 165, 0.22);
+
         }
+
+
+        .enter-button:active {
+
+            transform:
+                translateY(0);
+
+        }
+
 
         .hint {
+
             margin-top: 20px;
-            color: #625d68;
-            font-size: 0.72rem;
-            font-style: italic;
-        }
 
-        .section {
-            padding: 90px 7%;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-        }
+            color: #5f5965;
 
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 400;
-            letter-spacing: 0.12em;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            margin-top: 12px;
-            color: #77717e;
-            font-size: 0.9rem;
-        }
-
-        .novel-grid {
-            max-width: 1100px;
-            margin: 50px auto 0;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .novel-card {
-            padding: 30px;
-            min-height: 280px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            background:
-                linear-gradient(145deg, rgba(44, 22, 57, 0.55), rgba(12, 10, 15, 0.8));
-            transition: 0.35s;
-        }
-
-        .novel-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(156, 104, 190, 0.45);
-        }
-
-        .novel-number {
-            color: #8f6aac;
             font-size: 0.7rem;
-            letter-spacing: 0.2em;
+
+            font-style: italic;
+
         }
 
-        .novel-card h3 {
-            margin-top: 35px;
+
+        /* DECORATIVE LINE */
+
+        .divider {
+
+            width: 90px;
+
+            height: 1px;
+
+            margin:
+                35px
+                auto
+                0;
+
+            background:
+                rgba(161, 112, 190, 0.45);
+
+        }
+
+
+        /* ABOUT */
+
+        .about {
+
+            max-width: 700px;
+
+            margin:
+                0
+                auto;
+
+            padding:
+                90px
+                25px;
+
+            text-align: center;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.06);
+
+        }
+
+
+        .about h2 {
+
             font-size: 1.5rem;
+
             font-weight: 400;
+
+            letter-spacing: 0.18em;
+
         }
 
-        .novel-card p {
-            margin-top: 15px;
-            color: #8c8692;
-            line-height: 1.7;
+
+        .about p {
+
+            margin-top: 20px;
+
+            color: #77717e;
+
             font-size: 0.9rem;
+
+            line-height: 1.8;
+
         }
 
-        .read-button {
-            display: inline-block;
-            margin-top: 25px;
-            color: #b98bce;
-            text-decoration: none;
-            font-size: 0.78rem;
-            letter-spacing: 0.12em;
-        }
+
+        /* FOOTER */
 
         footer {
-            padding: 30px 7%;
+
+            padding:
+                28px
+                7%;
+
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            color: #55505b;
-            font-size: 0.7rem;
-            letter-spacing: 0.12em;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.06);
+
+            color: #504b55;
+
+            font-size: 0.65rem;
+
+            letter-spacing: 0.15em;
+
         }
 
-        @media (max-width: 650px) {
+
+        /* MOBILE */
+
+        @media (max-width: 600px) {
 
             header {
-                padding: 22px 5%;
+
+                padding:
+                    22px
+                    5%;
+
             }
 
-            nav {
-                gap: 14px;
+
+            .logo {
+
+                font-size: 0.78rem;
+
             }
+
 
             nav a {
-                font-size: 0.7rem;
+
+                font-size: 0.65rem;
+
             }
+
 
             .hero {
-                min-height: 70vh;
+
+                min-height: 78vh;
+
+                padding:
+                    60px
+                    18px;
+
             }
 
-            .section {
-                padding: 70px 5%;
+
+            .subtitle {
+
+                font-size: 0.82rem;
+
+                letter-spacing: 0.1em;
+
             }
+
+
+            .enter-button {
+
+                padding:
+                    15px
+                    26px;
+
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="page">
 
+
+    <!-- HEADER -->
+
     <header>
-        <div class="logo">MR. LOREWEAVE</div>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            MR. LOREWEAVE
+        </a>
+
 
         <nav>
-            <a href="archive.html" class="enter-button">
-            <a href="#about">ABOUT</a>
+
+            <a href="#about">
+                ABOUT
+            </a>
+
         </nav>
+
     </header>
 
+
+
+    <!-- MAIN -->
+
     <main>
+
+
+        <!-- HERO -->
 
         <section class="hero">
 
             <div class="hero-content">
 
-                <div class="eyebrow">THE ARCHIVE</div>
 
-                <h1>LOREWEAVE</h1>
+                <div class="eyebrow">
+                    THE ARCHIVE
+                </div>
+
+
+                <h1>
+                    LOREWEAVE
+                </h1>
+
 
                 <p class="subtitle">
                     Stories leave traces.
                 </p>
 
-                <a href="archive.html" class="enter-button">
-                   ENTER THE ARCHIVE
+
+                <div class="divider"></div>
+
+
+                <!-- THIS BUTTON OPENS THE ARCHIVE PAGE -->
+
+                <a
+                    href="archive.html"
+                    class="enter-button"
+                >
+                    ENTER THE ARCHIVE
                 </a>
-            
-                </a>
+
 
                 <p class="hint">
                     Some records are better left unread.
                 </p>
 
-            </div>
-
-        </section>
-
-
-        <section class="section" id="archive">
-
-            <h2 class="section-title">THE ARCHIVE</h2>
-
-            <p class="section-subtitle">
-                Stories, worlds, and things that should perhaps remain forgotten.
-            </p>
-
-
-            <div class="novel-grid">
-
-                <article class="novel-card">
-
-                    <div class="novel-number">
-                        ARCHIVE 001
-                    </div>
-
-                    <h3>Coming Soon</h3>
-
-                    <p>
-                        A story is waiting to be placed here.
-                        For now, the archive remains quiet.
-                    </p>
-
-                    <a href="#" class="read-button">
-                        OPEN RECORD →
-                    </a>
-
-                </article>
-
-
-                <article class="novel-card">
-
-                    <div class="novel-number">
-                        ARCHIVE 002
-                    </div>
-
-                    <h3>Unknown Record</h3>
-
-                    <p>
-                        The file exists, but its contents have not
-                        yet been recovered.
-                    </p>
-
-                    <a href="#" class="read-button">
-                        OPEN RECORD →
-                    </a>
-
-                </article>
-
-
-                <article class="novel-card">
-
-                    <div class="novel-number">
-                        ARCHIVE 003
-                    </div>
-
-                    <h3>Uncatalogued</h3>
-
-                    <p>
-                        Something has been added to the archive
-                        without a known author.
-                    </p>
-
-                    <a href="#" class="read-button">
-                        OPEN RECORD →
-                    </a>
-
-                </article>
 
             </div>
 
         </section>
 
 
-        <section class="section" id="about">
 
-            <h2 class="section-title">ABOUT</h2>
+        <!-- ABOUT -->
 
-            <p class="section-subtitle">
-                The creator behind the archive.
+        <section
+            class="about"
+            id="about"
+        >
+
+            <h2>
+                ABOUT THE ARCHIVE
+            </h2>
+
+
+            <p>
+                A growing collection of stories, artwork,
+                strange records, and worlds created by
+                Mr. LoreWeave.
             </p>
 
         </section>
+
 
     </main>
 
 
+
+    <!-- FOOTER -->
+
     <footer>
-        © 2026 MR. LOREWEAVE · THE ARCHIVE
+
+        © 2026 MR. LOREWEAVE
+        ·
+        THE ARCHIVE
+
     </footer>
+
 
 </div>
 
+
 </body>
+
 </html>
